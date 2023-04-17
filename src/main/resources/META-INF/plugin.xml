@@ -1,0 +1,30 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <id>com.github.leo2777.leomvptemplate</id>
+    <name>LeoMvp</name>
+    <vendor>LeoMark</vendor>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.android</depends>
+    <depends>org.jetbrains.kotlin</depends>
+    <depends>com.intellij.modules.java</depends>
+
+    <resource-bundle>messages.MyBundle</resource-bundle>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow factoryClass="com.github.leo2777.leomvptemplate.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
+    </extensions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationService serviceImplementation="com.github.leo2777.leomvptemplate.services.MyApplicationService"/>
+        <projectService serviceImplementation="com.github.leo2777.leomvptemplate.services.MyProjectService"/>
+    </extensions>
+
+    <applicationListeners>
+        <listener class="com.github.leo2777.leomvptemplate.listeners.MyProjectManagerListener" topic="com.intellij.openapi.project.ProjectManagerListener"/>
+    </applicationListeners>
+
+    <extensions defaultExtensionNs="com.android.tools.idea.wizard.template">
+        <wizardTemplateProvider implementation="com.github.leo2777.leomvptemplate.leoMvp.PluginTemplateProviderImpl" />
+    </extensions>
+</idea-plugin>
