@@ -5,12 +5,7 @@
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
 
 
-==生成 MVP 框架模版代码插件。具体使用方法，以及生成文档在编写中，敬请期待······==
-
-
-
-
-
+生成 MVP 框架模版代码插件。具体使用方法，以及生成文档在编写中，敬请期待······
 
 
 
