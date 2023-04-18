@@ -16,12 +16,13 @@ package com.github.leo2777.leomvptemplate.leoMvp.mvp.activity.tem
 
 
 fun mvpActivityKotlin(
-    name:String,
-    pathName:String,
-    contractName:String,
-    presenterName:String,
-    packageName:String
-)="""
+    name: String,
+    pathName: String,
+    contractName: String,
+    presenterName: String,
+    packageName: String,
+    rootPackage: String,
+) = """
 
 package ${packageName}.$pathName
 
@@ -29,6 +30,13 @@ package ${packageName}.$pathName
 import leo.study.lib_base.mvp.BaseMvpActivity
 import ${packageName}.${pathName}.$contractName
 import ${packageName}.${pathName}.$presenterName
+${
+    if (rootPackage.isNotEmpty()) {
+        "import ${rootPackage}.databinding.Activity${name}Binding"
+    } else {
+        ""
+    }
+}
 
 /**
  *
@@ -37,7 +45,8 @@ import ${packageName}.${pathName}.$presenterName
  *
  *
  * this name is ${name}Activity
- * this path is ${packageName}.${packageName}.${name}Activity
+ * this packageName is $rootPackage
+ * this path is ${packageName}.${pathName}.${name}Activity
  * this desc: 本自动生成代码，基于 leoMvpKotlin 框架，请添加相对应的依赖
  * this URL: https://github.com/leo2777/leo_kotlin_mvp_demo
  * ***********************************************************************

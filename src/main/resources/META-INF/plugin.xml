@@ -1,7 +1,7 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.leo2777.leomvptemplate</id>
-    <name>LeoMvp</name>
+    <name>Leo Quick Mvp</name>
     <vendor>LeoMark</vendor>
 
     <depends>com.intellij.modules.platform</depends>

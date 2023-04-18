@@ -7,7 +7,8 @@ fun mvpManifest(
     activityClass:String) = """
 
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
     <application>
 	    <activity android:name="${packageName}.${pathName}.${activityClass}"
                   android:exported="false"/>

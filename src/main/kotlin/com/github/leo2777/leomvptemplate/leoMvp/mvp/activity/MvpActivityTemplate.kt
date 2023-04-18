@@ -22,7 +22,7 @@ import com.github.leo2777.leomvptemplate.leoMvp.mvp.activity.mvpActivityTemplate
 val mvpActivityTemplate
     get() = template {
 
-        name = "MVP Template Activity"
+        name = "Leo Kotlin MVP Activity"
         description = "一键创建 MVP模式 所有组（kotlin）"
         minApi = MIN_API
         category = Category.Activity
@@ -45,18 +45,11 @@ val mvpActivityTemplate
 
 
         val relPackageName = stringParameter {
-            name = "真实模块名字（自动根据定义模块名称生成，请勿在此编写）:"
+            name = "真实模块名字（自动根据定义模块名称生成，请勿在此编写 ！！！):"
             constraints = listOf(Constraint.UNIQUE, Constraint.NONEMPTY)
             default = "main"
             help = "保存在路径的名字，大写默认用 '_' 间隔开，与布局文件逻辑一致"
             suggest = { nameChangeToLowercase(temPackageName.value) }
-        }
-
-        val rootPackName = stringParameter {
-            name = "Package Name(自动生成存储包名，一般情况下不建议修改)："
-            constraints = listOf(Constraint.MODULE)
-            default = "com.leo.mvp"
-            visible = { !isNewModule }
         }
 
         val activityName = stringParameter {
@@ -75,7 +68,7 @@ val mvpActivityTemplate
         }
 
         val isCustomMVPName = booleanParameter {
-            name = "自动创建及命名 MVP 组件 Presenter&Model&Contract? 默认选中，未选中可自定义M层，契约类，P层名字"
+            name = "是否自动创建及命名 MVP 组件 Presenter&Model&Contract? 默认选中，未选中可自定义M层、契约类、P层名字"
             default = true
             help =
                 "是否自动创建 P层&M层&V层 ？自动创建名字固定为 'Presenter'&'Model'&'Contract'，否则 包名+'Presenter'&'Model'&'Contract'"
@@ -114,16 +107,27 @@ val mvpActivityTemplate
 
 
         val packageName = stringParameter {
-            name = "Package Name(自动生成存储包名，一般情况下不建议修改)："
+            name = "Package Name(自动生成存储包名，一般情况下不建议修改):"
             constraints = listOf(Constraint.PACKAGE)
             default = "com.leo.mvp"
             visible = { !isNewModule }
         }
 
+
+        val rootPackName = stringParameter {
+            name = "应用包名，默认值为当前创建的路径值，需要开发者自行删减。 如不修改，则需自行前往Manifest文件添加Activity声明 ！！！:"
+            constraints = listOf(Constraint.NONEMPTY,Constraint.PACKAGE)
+            default = "com.leo.mvp"
+            help = "用于创建 activity的Manifest文件代码以及基础导包，如 R文件等等"
+            visible = { !isNewModule }
+            suggest = {packageName.value}
+        }
+
+
         widgets(
+            TextFieldWidget(rootPackName),
             TextFieldWidget(temPackageName),
             TextFieldWidget(relPackageName),
-            TextFieldWidget(rootPackName),
             TextFieldWidget(activityName),
             TextFieldWidget(activityLayoutName),
             CheckBoxWidget(isCustomMVPName),
@@ -139,6 +143,7 @@ val mvpActivityTemplate
                 temPackageName.value,
                 relPackageName.value,
                 packageName.value,
+                rootPackName.value,
                 activityName.value,
                 activityLayoutName.value,
                 presenterName.value,

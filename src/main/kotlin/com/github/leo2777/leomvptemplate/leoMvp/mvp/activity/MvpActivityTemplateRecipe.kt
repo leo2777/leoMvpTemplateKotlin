@@ -25,6 +25,7 @@ fun RecipeExecutor.mvpActivityTemplateRecipe(
     temPackageName: String,
     relPackageName:String,
     packageName:String,
+    rootPackageName:String,
     activityName: String,
     activityLayoutName: String,
     presenterName: String,
@@ -35,14 +36,15 @@ fun RecipeExecutor.mvpActivityTemplateRecipe(
 
 
 
+    val rootPackage = if (rootPackageName == packageName){ ""}else{rootPackageName}
+    val absPackage = packageName.replace(rootPackageName,"")
 
-
-    val mvpActivity = mvpActivityKotlin(temPackageName,relPackageName,contractName, presenterName, packageName)
+    val mvpActivity = mvpActivityKotlin(temPackageName,relPackageName,contractName, presenterName, packageName,rootPackage)
     save(mvpActivity,srcOut.resolve("${relPackageName}/${temPackageName}Activity.kt"))
 
     save(mvpXml(relPackageName,packageName,activityName), resOut.resolve("layout/${activityLayoutName}.xml"))
 
-    mergeXml(mvpManifest(relPackageName,packageName,activityName),manifestOut.resolve("AndroidManifest.xml"))
+    mergeXml(mvpManifest(relPackageName,absPackage,activityName),manifestOut.resolve("AndroidManifest.xml"))
 
     val mvpContract = mvpContractKotlin(relPackageName,contractName, packageName)
     save(mvpContract,srcOut.resolve("${relPackageName}/${contractName}.kt"))
