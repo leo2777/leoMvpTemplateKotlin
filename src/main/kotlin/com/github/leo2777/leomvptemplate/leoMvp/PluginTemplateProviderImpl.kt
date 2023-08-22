@@ -2,6 +2,7 @@ package com.github.leo2777.leomvptemplate.leoMvp
 
 import com.android.tools.idea.wizard.template.Template
 import com.android.tools.idea.wizard.template.WizardTemplateProvider
+import com.github.leo2777.leomvptemplate.leoMvp.mvp.fragment.mvpFragmentTemplate
 import com.github.leo2777.leomvptemplate.leoMvp.mvp.mvpActivityTemplate
 
 
@@ -20,6 +21,7 @@ import com.github.leo2777.leomvptemplate.leoMvp.mvp.mvpActivityTemplate
 class PluginTemplateProviderImpl: WizardTemplateProvider() {
 
     override fun getTemplates(): List<Template>  = listOf(
-        mvpActivityTemplate
+        mvpActivityTemplate,
+        mvpFragmentTemplate
     )
 }

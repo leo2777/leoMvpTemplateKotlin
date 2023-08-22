@@ -1,10 +1,10 @@
-package com.github.leo2777.leomvptemplate.leoMvp.mvp.activity.tem
+package com.github.leo2777.leomvptemplate.leoMvp.mvp.fragment.tem
 
 
 /**
  *
  * ***********************************************************************
- *the project desc: Activity基本类
+ *the project desc: Fragment基本类
  *this name is MvpActivityKotlin
  *this from package leoMvpTemplate
  *this create by machine leo mark
@@ -15,7 +15,7 @@ package com.github.leo2777.leomvptemplate.leoMvp.mvp.activity.tem
  */
 
 
-fun mvpActivityKotlin(
+fun mvpFragmentKotlin(
     name: String,
     pathName: String,
     contractName: String,
@@ -27,12 +27,15 @@ fun mvpActivityKotlin(
 package ${packageName}.$pathName
 
 
-import leo.study.lib_base.mvp.BaseMvpActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import leo.study.lib_base.mvp.BaseMvpFragment
 import ${packageName}.${pathName}.$contractName
 import ${packageName}.${pathName}.$presenterName
 ${
     if (rootPackage.isNotEmpty()) {
-        "import ${rootPackage}.databinding.Activity${name}Binding"
+        "import ${rootPackage}.databinding.Fragment${name}Binding"
     } else {
         ""
     }
@@ -44,28 +47,28 @@ ${
  * the project desc: 
  *
  *
- * this name is ${name}Activity
+ * this name is ${name}Fragment
  * this packageName is $rootPackage
- * this path is ${packageName}.${pathName}.${name}Activity
+ * this path is ${packageName}.${pathName}.${name}Fragment
  * this desc: 本自动生成代码，基于 leoMvpKotlin 框架，请添加相对应的依赖
  * this URL: https://github.com/leo2777/LeoFastDevMvpKotlin
  * this template url: https://github.com/leo2777/leoMvpTemplateKotlin
  * ***********************************************************************
  */
-class ${name}Activity : BaseMvpActivity<Activity${name}Binding,${contractName}.View,${contractName}.Presenter>(),${contractName}.View{
+class ${name}Fragment : BaseMvpFragment<Fragment${name}Binding,${contractName}.View,${contractName}.Presenter>(),${contractName}.View{
 
 
     override var presenter: ${contractName}.Presenter = ${presenterName}()
     
-    override fun getViewBinding(): Activity${name}Binding {
-        return Activity${name}Binding.inflate(layoutInflater)
+    override fun getViewBinding(inflater:LayoutInflater,container:ViewGroup?): Fragment${name}Binding {
+        return Fragment${name}Binding.inflate(inflater,container,false)
     }
     
-    override fun initView(){
+    override fun initView(view:View){
     
     }
     
-    override fun initData(){
+    override fun lazyLoad(){
     
     }
 }
